@@ -1,5 +1,10 @@
+import java.io.Serializable;
 import java.util.*;
+
 import quickdt.*;
+
+import com.google.common.collect.*;
+import org.javatuples.Pair;
 
 //Author: Breandan Considine
 
@@ -9,10 +14,15 @@ public class NaiveBayesClassifier
 	private Attributes testSample;
 	public static int vicinity = 10;
 	
-	public NaiveBayesClassifier(final Iterable<Instance> trainingData, final Attributes unknown)
+	public NaiveBayesClassifier(final Iterable<Instance> trainingData)
 	{
-		this.data = trainingData;
-		testSample = unknown;
+		data = trainingData;
+		buildTable();
+	}
+	
+	public Table buildTable()
+	{
+		return new Table(data);
 	}
 	
 	public void run()
